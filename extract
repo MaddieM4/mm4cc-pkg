@@ -4,4 +4,5 @@ set -ex
 CONTAINER_NAME="$1"
 OUTPUT_DIR="/out/"
 
-docker run "$CONTAINER_NAME" tar cv /out/ | tar x
+docker run "$CONTAINER_NAME" tar cv -C /out . \
+  | tar x --transform 's,^,site-root/debian/,'

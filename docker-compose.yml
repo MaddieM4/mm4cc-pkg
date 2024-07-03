@@ -4,8 +4,7 @@ services:
     image: nginx:latest
     restart: unless-stopped
     volumes:
-      - ./setup-ppa.sh:/usr/share/nginx/html/setup-ppa.sh
-      - ./out:/usr/share/nginx/html/debian
+      - ./site-root:/usr/share/nginx/html/
   trial:
     build: ./trial
     depends_on:
