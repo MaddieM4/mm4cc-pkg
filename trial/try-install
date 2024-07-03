@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+curl http://ppa-host/setup-ppa.sh | sh

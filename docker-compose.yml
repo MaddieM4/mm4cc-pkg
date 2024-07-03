@@ -1,0 +1,12 @@
+name: mm4cc-pkg
+services:
+  ppa-host:
+    image: nginx:latest
+    restart: unless-stopped
+    volumes:
+      - ./setup-ppa.sh:/usr/share/nginx/html/setup-ppa.sh
+      - ./out:/usr/share/nginx/html/debian
+  trial:
+    build: ./trial
+    depends_on:
+      - ppa-host
