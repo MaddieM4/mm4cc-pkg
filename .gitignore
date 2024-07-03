@@ -1,0 +1,5 @@
+# Vim files
+*.sw[op]
+
+# Built packages
+/out/
