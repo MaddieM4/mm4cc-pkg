@@ -4,8 +4,13 @@ services:
     image: nginx:latest
     restart: unless-stopped
     volumes:
-      - ./site-root:/usr/share/nginx/html/
+      - ./site-root:/usr/share/nginx/html:ro
   trial:
     build: ./trial
     depends_on:
       - ppa-host
+  indexer:
+    build: ./indexer
+    volumes:
+      - ./site-root:/srv/site-root
+      - ./indexer:/home/indexer

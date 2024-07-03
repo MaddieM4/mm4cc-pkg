@@ -1,0 +1,7 @@
+#!/bin/bash
+set -ex
+
+gpg --no-default-keyring --keyring mm4cc.gpg --fingerprint
+gpg --full-generate-key
+
+# TODO: Improve and verify this approach

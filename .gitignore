@@ -3,3 +3,7 @@
 
 # Built packages
 /site-root/debian
+
+# GPG-related files
+/site-root/mm4cc.gpg
+/indexer/.*

@@ -14,7 +14,7 @@ fi
 KEYRING_PATH=/usr/share/keyrings/mm4cc.gpg
 
 # Install GPG key
-curl "${PPA_SITE}/keyring.gpg" | $SUDO tee "$KEYRING_PATH"
+curl "${PPA_SITE}/mm4cc.gpg" | $SUDO tee "$KEYRING_PATH" > /dev/null
 
 # Create source file
 $SUDO tee /etc/apt/sources.list.d/mm4cc.sources <<EOF
