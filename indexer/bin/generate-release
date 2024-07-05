@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+file_line() {
+  local algorithm="$1"
+  local path="$2"
+  echo " $(${algorithm}sum "$path" | cut -d' ' -f 1)   $(stat -c '%s  %n' "$path")"
+}
+
+# TODO: More architectures?
+# TODO: Less hardcoded
+echo "Date: $(date -R -u)"
+echo "Architectures: amd64"
+echo "Components: main"
+echo "Suite: stable"
+echo "MD5Sum:"
+file_line md5 main/binary-amd64/Packages
+file_line md5 main/binary-amd64/Packages.gz
+echo "SHA1:"
+file_line sha1 main/binary-amd64/Packages
+file_line sha1 main/binary-amd64/Packages.gz
+echo "SHA256:"
+file_line sha256 main/binary-amd64/Packages
+file_line sha256 main/binary-amd64/Packages.gz

@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+hash_with() {
+  local algorithm="$1"
+  ${algorithm}sum "$FILEPATH" | cut -d' ' -f 1
+}
+
+# TODO: Less hardcoding
+cd /srv/site-root/debian/dists/stable/
+deb-to-pkg-stanza obsidian-1.6.5-amd64.deb > main/binary-amd64/Packages
+gzip -c main/binary-amd64/Packages > main/binary-amd64/Packages.gz
+# TODO: xz and bz2 support
+
+generate-release > Release
+gpg --clearsign Release && mv Release.asc InRelease

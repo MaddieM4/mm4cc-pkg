@@ -1,5 +1,4 @@
 #!/bin/bash
 set -ex
 
-cp .gnupg/mm4cc.gpg /srv/site-root/mm4cc.gpg
-chmod +r /srv/site-root/mm4cc.gpg
+gpg --output /srv/site-root/mm4cc.gpg --export maddie@maddiem4.cc

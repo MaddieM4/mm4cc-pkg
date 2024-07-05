@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+if [ -z "$1" ]; then
+  echo "USAGE: $0 some-package-name.deb"
+  exit 1
+fi
+
+FILENAME="pool/$1"
+FILEPATH="/srv/site-root/debian/$FILENAME"
+
+hash_with() {
+  local algorithm="$1"
+  ${algorithm}sum "$FILEPATH" | cut -d' ' -f 1
+}
+
+# Print original control file
+dpkg-deb -f "$FILEPATH"
+echo "Filename: $FILENAME"
+echo "Size: $(stat -c '%s' "$FILEPATH")"
+echo "MD5sum: $(hash_with md5)"
+echo "SHA1: $(hash_with sha1)"
+echo "SHA256: $(hash_with sha256)"
