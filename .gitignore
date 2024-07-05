@@ -3,6 +3,7 @@
 
 # Built packages
 /site-root/debian
+/site-root/example
 
 # GPG-related files
 /site-root/mm4cc.gpg
