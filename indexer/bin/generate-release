@@ -7,18 +7,27 @@ file_line() {
   echo " $(${algorithm}sum "$path" | cut -d' ' -f 1)   $(stat -c '%s  %n' "$path")"
 }
 
-# TODO: More architectures?
-# TODO: Less hardcoded
+lines_for_arch() {
+  local algorithm="$1"
+  local arch="$2"
+  file_line $algorithm main/binary-$arch/Packages
+  file_line $algorithm main/binary-$arch/Packages.gz
+}
+
+lines_for_algorithm() {
+  local algorithm="$1"
+  lines_for_arch $algorithm amd64
+  lines_for_arch $algorithm arm64
+}
+
+# TODO: More metadata
 echo "Date: $(date -R -u)"
-echo "Architectures: amd64"
+echo "Architectures: amd64 arm64"
 echo "Components: main"
 echo "Suite: stable"
 echo "MD5Sum:"
-file_line md5 main/binary-amd64/Packages
-file_line md5 main/binary-amd64/Packages.gz
+lines_for_algorithm md5
 echo "SHA1:"
-file_line sha1 main/binary-amd64/Packages
-file_line sha1 main/binary-amd64/Packages.gz
+lines_for_algorithm sha1
 echo "SHA256:"
-file_line sha256 main/binary-amd64/Packages
-file_line sha256 main/binary-amd64/Packages.gz
+lines_for_algorithm sha256

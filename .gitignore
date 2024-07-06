@@ -5,6 +5,9 @@
 /site-root/debian
 /site-root/example
 
+# Tempfiles for building packages
+/resources
+
 # GPG-related files
 /site-root/mm4cc.gpg
 /indexer/.*

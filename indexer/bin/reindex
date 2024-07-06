@@ -1,16 +1,26 @@
 #!/bin/bash
-set -e
+set -ex
+cd /srv/site-root/debian/dists/stable
 
-hash_with() {
-  local algorithm="$1"
-  ${algorithm}sum "$FILEPATH" | cut -d' ' -f 1
+build_arch() {
+  local arch="$1"
+  local dir="main/binary-$arch"
+
+  # Zero-out the place to start
+  mkdir -p "$dir"
+  true > $dir/Packages
+
+  # Include all matching packages
+  for pkg in /srv/site-root/debian/pool/*-$arch.deb; do
+    deb-to-pkg-stanza $(basename $pkg) >> $dir/Packages
+    echo >> $dir/Packages
+  done
+
+  # Create compressions (TODO: xz and bz2)
+  gzip -c $dir/Packages > $dir/Packages.gz
 }
 
-# TODO: Less hardcoding
-cd /srv/site-root/debian/dists/stable/
-deb-to-pkg-stanza obsidian-1.6.5-amd64.deb > main/binary-amd64/Packages
-gzip -c main/binary-amd64/Packages > main/binary-amd64/Packages.gz
-# TODO: xz and bz2 support
-
+build_arch amd64
+build_arch arm64
 generate-release > Release
 gpg --clearsign Release && mv Release.asc InRelease
