@@ -1,6 +1,0 @@
-#!/bin/bash
-set -ex
-
-for builder in $(cd builders && ls); do
-  ./extract mm4cc-pkg-$builder
-done

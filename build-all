@@ -1,7 +1,0 @@
-#!/bin/bash
-set -ex
-
-cd builders
-for builder in *; do
-  (cd $builder && docker build -t mm4cc-pkg-$builder .)
-done
