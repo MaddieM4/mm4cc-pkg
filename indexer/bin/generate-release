@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+ARCHITECTURES="amd64 arm64 all"
 
 file_line() {
   local algorithm="$1"
@@ -16,13 +17,14 @@ lines_for_arch() {
 
 lines_for_algorithm() {
   local algorithm="$1"
-  lines_for_arch $algorithm amd64
-  lines_for_arch $algorithm arm64
+  for arch in $ARCHITECTURES; do
+    lines_for_arch $algorithm $arch
+  done
 }
 
 # TODO: More metadata
 echo "Date: $(date -R -u)"
-echo "Architectures: amd64 arm64"
+echo "Architectures: $ARCHITECTURES"
 echo "Components: main"
 echo "Suite: stable"
 echo "MD5Sum:"

@@ -22,5 +22,6 @@ build_arch() {
 
 build_arch amd64
 build_arch arm64
+build_arch all
 generate-release > Release
 gpg --clearsign Release && mv Release.asc InRelease
