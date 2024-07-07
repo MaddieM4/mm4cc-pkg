@@ -11,7 +11,7 @@ build_arch() {
   true > $dir/Packages
 
   # Include all matching packages
-  for pkg in /srv/site-root/debian/pool/*-$arch.deb; do
+  for pkg in /srv/site-root/debian/pool/*_$arch.deb; do
     deb-to-pkg-stanza $(basename $pkg) >> $dir/Packages
     echo >> $dir/Packages
   done

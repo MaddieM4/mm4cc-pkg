@@ -7,6 +7,8 @@
 
 # Tempfiles for building packages
 /resources
+/builders/*/out
+/builders/*/tmp
 
 # GPG-related files
 /site-root/mm4cc.gpg
