@@ -1,10 +1,14 @@
+SUITE=unstable
 POOL=site-root/debian/pool
-INRELEASE=site-root/debian/dists/stable/InRelease
+INRELEASE=site-root/debian/dists/$(SUITE)/InRelease
 
 all: $(INRELEASE)
 
+prod:
+	SUITE=stable make -e
+
 $(INRELEASE): $(POOL) $(wildcard indexer/bin/*)
-	docker compose run indexer reindex
+	docker compose run indexer reindex $(SUITE)
 
 $(POOL): $(wildcard builders/*/*)
 	rm -rf $(POOL) && mkdir -p $(POOL)

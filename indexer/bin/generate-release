@@ -1,5 +1,12 @@
 #!/bin/bash
 set -e
+
+SUITE="$1"
+if [ -z "$SUITE" ]; then
+  echo "Usage: generate-release <suite>"
+  echo "No suite provided"
+  exit 1
+fi
 ARCHITECTURES="amd64 arm64 all"
 
 file_line() {
@@ -26,7 +33,7 @@ lines_for_algorithm() {
 echo "Date: $(date -R -u)"
 echo "Architectures: $ARCHITECTURES"
 echo "Components: main"
-echo "Suite: stable"
+echo "Suite: $SUITE"
 echo "MD5Sum:"
 lines_for_algorithm md5
 echo "SHA1:"

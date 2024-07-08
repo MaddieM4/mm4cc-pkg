@@ -1,6 +1,14 @@
 #!/bin/bash
 set -ex
-cd /srv/site-root/debian/dists/stable
+
+SUITE="$1"
+if [ -z "$SUITE" ]; then
+  echo "Usage: reindex <suite>"
+  echo "No suite provided"
+  exit 1
+fi
+mkdir -p /srv/site-root/debian/dists/$SUITE
+cd /srv/site-root/debian/dists/$SUITE
 
 build_arch() {
   local arch="$1"
@@ -23,5 +31,5 @@ build_arch() {
 build_arch amd64
 build_arch arm64
 build_arch all
-generate-release > Release
+generate-release $SUITE > Release
 gpg --clearsign Release && mv Release.asc InRelease
