@@ -29,11 +29,13 @@ lines_for_algorithm() {
   done
 }
 
-# TODO: More metadata
-echo "Date: $(date -R -u)"
+echo "Description: Packages and metapackages distributed by MaddieM4"
+echo "Origin: https://maddiem4.cc/"
+echo "Label: ppa.maddiem4.cc"
+echo "Suite: $SUITE"
 echo "Architectures: $ARCHITECTURES"
 echo "Components: main"
-echo "Suite: $SUITE"
+echo "Date: $(date -R -u)"
 echo "MD5Sum:"
 lines_for_algorithm md5
 echo "SHA1:"
