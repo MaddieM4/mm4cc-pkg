@@ -5,6 +5,10 @@ services:
     restart: unless-stopped
     volumes:
       - ./site-root:/usr/share/nginx/html:ro
+  tunnel:
+    image: cloudflare/cloudflared
+    env_file: .tunnel.env
+    command: tunnel run
   indexer:
     build: ./indexer
     volumes:

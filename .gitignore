@@ -13,3 +13,6 @@
 # GPG-related files
 /site-root/mm4cc.gpg
 /indexer/.*
+
+# Tunnel credentials
+.tunnel.env
