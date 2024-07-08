@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+./upstream/target/release/glu --version | cut -d' ' -f2

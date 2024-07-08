@@ -1,0 +1,24 @@
+#!/bin/bash
+set -ex
+
+try-install
+apt install -y glu
+
+# Confirm that glu is in PATH
+which glu
+
+# Create an example markdown file
+cat > example.md <<'EOF'
+Some markdown
+=============
+
+```bash
+# script.sh
+echo "Hello from the script crypt!"
+```
+
+This is an example of a tutorial with code segments.
+EOF
+
+# Attempt to use code segment from tutorial
+glu example.md 'bash script.sh'

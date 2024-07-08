@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+ARCH="$1"
+if [ -z "$ARCH" ]; then
+  echo "No ARCH supplied" >&2
+  echo "usage: generate-control <arch>" >&2
+  exit 1
+fi
+
+echo "Package: glu"
+echo "Version: $(./get-version)"
+echo "Architecture: $ARCH"
+echo "Depends: libc6,bash"
+echo "Installed-Size: $(stat -c "%s" tmp/$ARCH/usr/bin/glu)"
+echo "Maintainer: Maddie Emfour <maddie@maddiem4.cc>"
+echo "Description: markdown tutorial to directory converter"
+echo "  Allows unpacking or running the code segments of a Markdown file."
+echo "Homepage: https://github.com/MaddieM4/glu"
+#echo "Built-Using: TODO?"
