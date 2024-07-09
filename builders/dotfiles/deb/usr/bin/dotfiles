@@ -1,0 +1,34 @@
+#!/bin/bash
+set -e
+fail() { cat >&2; exit 1; }
+usage() {
+  fail <<EOF
+usage: dotfiles [apply|configure]
+EOF
+}
+
+if [[ ! -e $HOME/projects/dotfiles ]]; then
+  fail <<'EOF'
+You don't have a dotfiles repo in your ~/projects dir.
+
+Consider one of the following options:
+  mkdir -p ~/projects && cd ~/projects
+  git clone git@github.com:MaddieM4/dotfiles.git
+or...
+  mkdir -p ~/projects && cd ~/projects
+  git clone https://github.com/MaddieM4/dotfiles.git
+EOF
+fi
+
+if [[ "$1" == "apply" ]]; then
+   cd ~/projects/dotfiles && stow -vt "$HOME" files
+elif [[ "$1" == "configure" ]]; then
+   cd ~/projects/dotfiles && ./configure
+elif [[ -z "$1" ]]; then
+   echo "You must provide a subcommand." >&2
+   usage
+else
+   fail <<EOF
+Unknown subcommand: $1
+EOF
+fi
