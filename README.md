@@ -1,4 +1,4 @@
-# mm4cc-pkg
+# Maddie's Package Hosting
 
 Debian packages for setting up systems according to my requirements.
 

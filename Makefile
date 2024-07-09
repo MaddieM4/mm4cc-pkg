@@ -3,7 +3,7 @@ POOL=site-root/debian/pool
 INRELEASE=site-root/debian/dists/$(SUITE)/InRelease
 TESTS=$(patsubst ./trial/test-%,%,$(wildcard ./trial/test-*))
 
-all: $(INRELEASE)
+all: $(INRELEASE) site-root/index.html
 
 prod:
 	SUITE=stable make -e
@@ -18,6 +18,10 @@ $(POOL): $(wildcard builders/*/*)
 		(cd $$builder && make); \
 		cp $$builder/out/* $(POOL); \
 	done
+
+site-root/index.html: README.md
+	pandoc --from gfm --to html --metadata title='ppa.maddiem4.cc' --standalone \
+	  $< --output $@
 
 test:
 	docker compose up -d && \
