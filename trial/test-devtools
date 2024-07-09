@@ -7,4 +7,5 @@ apt install -y mm4cc-devtools
 which git
 which vim
 which tree
+which glu
 neofetch
