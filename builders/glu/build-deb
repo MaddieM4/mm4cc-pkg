@@ -16,7 +16,6 @@ set -x
 mkdir -p $DIR/usr/bin $DIR/DEBIAN
 cp "$BIN_FILE" $DIR/usr/bin/glu
 ./generate-control $DEB_ARCH > $DIR/DEBIAN/control
-echo "$VERSION" > $DIR/debian-binary
 (cd $DIR && md5sum usr/bin/glu > DEBIAN/md5sums)
 
 # Build package

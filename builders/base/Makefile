@@ -20,7 +20,6 @@ tmp/base/deb-%: tmp/1password/deb-% tmp/docker/deb-% VERSION generate-control
 	mkdir -p $@/DEBIAN
 	./generate-control $* > $@/DEBIAN/control
 	mv tmp/md5sums-$* $@/DEBIAN/md5sums
-	cp VERSION $@/debian-binary
 
 # -----------------------------------------------------------------------------
 #  1Password

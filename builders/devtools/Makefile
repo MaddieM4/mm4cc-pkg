@@ -1,4 +1,4 @@
-DEB=mm4cc-devtools_1.1_all.deb
+DEB=mm4cc-devtools_1.2_all.deb
 
 out/$(DEB): tmp/$(DEB)
 	mkdir -p out && cp tmp/$(DEB) out/$(DEB)
