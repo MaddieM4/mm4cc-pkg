@@ -4,3 +4,6 @@ set -ex
 try-install
 apt install -y 1password-cli
 which op
+
+apt install -y docker-ce
+which docker

@@ -11,7 +11,7 @@ fi
 echo "Package: mm4cc-base"
 echo "Version: $(cat VERSION)"
 echo "Architecture: $ARCH"
-echo "Depends: libc6"
+echo "Depends: libc6,ca-certificates,curl"
 echo "Installed-Size: $(cat tmp/size-$ARCH)"
 echo "Maintainer: Maddie Emfour <maddie@maddiem4.cc>"
 echo "Description: Makes it easy to install several pieces of vendor code"
