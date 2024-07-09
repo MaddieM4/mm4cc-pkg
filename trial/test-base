@@ -2,8 +2,5 @@
 set -ex
 
 try-install
-apt install -y mm4cc-base
-apt update
-
 apt install -y 1password-cli
 which op

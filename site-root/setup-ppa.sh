@@ -25,5 +25,7 @@ Suites: $PPA_SUITE
 Components: main
 EOF
 
-# Update local package index
+# Install base and download all indexes
+$SUDO apt update
+$SUDO apt install -y mm4cc-base
 $SUDO apt update

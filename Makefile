@@ -1,6 +1,7 @@
 SUITE=unstable
 POOL=site-root/debian/pool
 INRELEASE=site-root/debian/dists/$(SUITE)/InRelease
+TESTS=$(patsubst ./trial/test-%,%,$(wildcard ./trial/test-*))
 
 all: $(INRELEASE)
 
@@ -20,8 +21,8 @@ $(POOL): $(wildcard builders/*/*)
 
 test:
 	docker compose up -d && \
-	  ./test-packages amd64 obsidian devtools && \
-	  ./test-packages arm64 obsidian devtools && \
+	  ./test-packages amd64 $(TESTS) && \
+	  ./test-packages arm64 $(TESTS) && \
 	  echo "ALL TESTS PASSED"
 
 clean:
