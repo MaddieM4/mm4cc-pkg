@@ -1,8 +1,7 @@
 if [ -e $HOME/.config/mm4cc/secrets ]; then
-  pushd $HOME/.config/mm4cc/secrets
+  pushd $HOME/.config/mm4cc/secrets > /dev/null
   for name in *; do
-    echo "$name"
     export "$name"="$(cat "$name")"
   done
-  popd
+  popd > /dev/null
 fi
