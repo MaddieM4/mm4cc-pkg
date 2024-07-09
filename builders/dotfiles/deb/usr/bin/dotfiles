@@ -21,7 +21,7 @@ EOF
 fi
 
 if [[ "$1" == "apply" ]]; then
-   cd ~/projects/dotfiles && stow -vt "$HOME" files
+   cd ~/projects/dotfiles && stow -vt "$HOME" files secrets
 elif [[ "$1" == "configure" ]]; then
    cd ~/projects/dotfiles && ./configure
 elif [[ -z "$1" ]]; then
