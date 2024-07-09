@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+ARCH="$1"
+if [ -z "$ARCH" ]; then
+  echo "No ARCH supplied" >&2
+  echo "usage: generate-control <arch>" >&2
+  exit 1
+fi
+
+echo "Package: mm4cc-base"
+echo "Version: $(cat VERSION)"
+echo "Architecture: $ARCH"
+echo "Depends: libc6"
+echo "Installed-Size: $(cat tmp/size-$ARCH)"
+echo "Maintainer: Maddie Emfour <maddie@maddiem4.cc>"
+echo "Description: Makes it easy to install several pieces of vendor code"
+echo "  This is mostly for apt configuration"
+echo "Homepage: https://github.com/MaddieM4/mm4cc-pkg"
+#echo "Built-Using: TODO?"
