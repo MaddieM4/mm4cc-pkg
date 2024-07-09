@@ -1,4 +1,6 @@
 #!/bin/bash
 set -e
 
-./upstream/target/release/glu --version | cut -d' ' -f2
+cd upstream
+cargo metadata --no-deps --format-version=1 \
+  | jq -r '.packages.[] | select(.name == "glu") | .version'

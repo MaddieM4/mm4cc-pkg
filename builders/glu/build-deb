@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+DEB_ARCH="$1"
+BIN_FILE="$2"
+DIR="./tmp/$DEB_ARCH"
+VERSION="$(./get-version)"
+
+if [[ -z "$1" || -z "$2" ]]; then
+  echo "Usage: build-deb <deb-arch> <bin-file>" >&2
+  exit 1
+fi
+
+set -x
+# Create tempdir for package
+mkdir -p $DIR/usr/bin $DIR/DEBIAN
+cp "$BIN_FILE" $DIR/usr/bin/glu
+./generate-control $DEB_ARCH > $DIR/DEBIAN/control
+echo "$VERSION" > $DIR/debian-binary
+(cd $DIR && md5sum usr/bin/glu > DEBIAN/md5sums)
+
+# Build package
+mkdir -p out
+dpkg-deb -b $DIR out/glu_${VERSION}_$DEB_ARCH.deb

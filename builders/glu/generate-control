@@ -11,7 +11,7 @@ fi
 echo "Package: glu"
 echo "Version: $(./get-version)"
 echo "Architecture: $ARCH"
-echo "Depends: libc6,openssl,bash"
+echo "Depends: libc6,ca-certificates,bash"
 echo "Installed-Size: $(stat -c "%s" tmp/$ARCH/usr/bin/glu)"
 echo "Maintainer: Maddie Emfour <maddie@maddiem4.cc>"
 echo "Description: markdown tutorial to directory converter"
