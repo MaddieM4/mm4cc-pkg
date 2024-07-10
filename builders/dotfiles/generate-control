@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+echo "Package: mm4cc-dotfiles"
+echo "Version: $(cat VERSION)"
+echo "Architecture: all"
+echo "Depends: libc6,bash,git,stow"
+echo "Installed-Size: $(du -sb tmp/deb | cut -f1)"
+echo "Maintainer: Maddie Emfour <maddie@maddiem4.cc>"
+echo "Description: Tools for managing your personal configuration"
+echo "  Provides the 'dotfiles' command and some /etc/profile.d/ scripts"
+echo "Homepage: https://github.com/MaddieM4/dotfiles"
+#echo "Built-Using: TODO?"
