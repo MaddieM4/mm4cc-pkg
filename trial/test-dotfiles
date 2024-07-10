@@ -1,0 +1,6 @@
+#!/bin/bash
+set -ex
+
+try-install
+apt install -y mm4cc-dotfiles
+dotfiles apply
