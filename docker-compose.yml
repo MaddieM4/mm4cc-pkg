@@ -7,6 +7,7 @@ services:
       - ./site-root:/usr/share/nginx/html:ro
   tunnel:
     image: cloudflare/cloudflared
+    restart: unless-stopped
     env_file: .tunnel.env
     command: tunnel run
   indexer:

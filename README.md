@@ -13,5 +13,6 @@ Packages currently provided:
  * `mm4cc-base` - (Installed by setup) configures apt for installing pkgs like `1password-cli` and `docker-ce`
  * `mm4cc-devtools` - various programming tools that I need regularly
  * `mm4cc-dotfiles` - [personal configuration tooling](https://github.com/MaddieM4/dotfiles)
+ * `mm4cc-desktop` - set up LXQt and i3 quickly (best paired with dotfiles config)
  * `glu` - [A tutorial to directory converter](https://github.com/MaddieM4/glu)
  * `obsidian` - hosted versions of the [Obsidian](https://obsidian.md/) Debian package
