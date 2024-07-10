@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-if [ -z "$1" -o -z "$2" ]; then
-  echo "USAGE: try-install [amd64|arm64] test1 ... testN"
+if [ -z "$1" ]; then
+  echo "USAGE: ./test-packages [amd64|arm64] test1 ... testN"
   exit 1
 fi
 ARCH="$1"; shift;
@@ -10,11 +10,23 @@ ARCH="$1"; shift;
 # Ensure we have the latest image built
 docker buildx build --platform linux/$ARCH -t mm4cc-pkg-trial-$ARCH --load trial
 
-# Try each test
-for t in "$@"; do
+run-test() {
+  local cmd="$1"; shift;
   docker run \
     --network mm4cc-pkg_default \
     --platform linux/$ARCH \
+    "$@" \
     mm4cc-pkg-trial-$ARCH \
-    test-$t
-done
+    "$cmd"
+}
+
+if [ -z "$1" ]; then
+  # Interactive mode
+  run-test bash -it
+else
+  # Try each test
+  for t in "$@"; do
+    run-test "test-$t"
+  done
+fi
+
